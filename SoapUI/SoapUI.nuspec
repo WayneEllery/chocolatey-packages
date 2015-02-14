@@ -3,13 +3,13 @@
   <metadata>
     <id>SoapUI</id>
     <title>SoapUI</title>
-    <version>5.0.0</version>
+    <version>5.0.0.1</version>
     <authors>SmartBear</authors>
     <owners>WayneEllery</owners>
     <summary>SoapUI is a free and open source cross-platform Functional Testing solution</summary>
     <description>SoapUI is a free and open source cross-platform Functional Testing solution. With an easy-to-use graphical interface, and enterprise-class features, SoapUI allows you to easily and rapidly create and execute automated functional, regression, compliance, and load tests. In a single test environment, SoapUI provides complete test coverage and supports all the standard protocols and technologies. There are simply no limits to what you can do with your tests. Meet SoapUI, the world's most complete testing tool!</description>
     <projectUrl>http://www.soapui.org/</projectUrl>
-    <tags>SoapUI Soap Testing</tags>
+    <tags>SoapUI Soap Testing admin</tags>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
     <iconUrl>https://cdn.rawgit.com/WayneEllery/chocolatey-packages/master/SoapUI/SoapUI.png</iconUrl>
     <dependencies>
@@ -17,6 +17,6 @@
     <releaseNotes></releaseNotes>
   </metadata>
   <files>
-    <file src="tools\**" target="tools" />
+    <file src="Tools\**" target="Tools" />
   </files>
 </package>
