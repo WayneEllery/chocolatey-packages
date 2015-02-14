@@ -1,3 +1,3 @@
 # chocolatey-packages
 
-This repository contains packages that are maintained by Rob
+This repository contains packages that are maintained by WayneEllery
