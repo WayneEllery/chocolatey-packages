@@ -11,7 +11,7 @@
     <projectUrl>http://www.soapui.org/</projectUrl>
     <tags>SoapUI Soap Testing</tags>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
-    <!--<iconUrl>http://cdn.rawgit.com/__CHOCO_PKG_MAINTAINER_REPO__/master/icons/__NAME__.png</iconUrl>-->
+    <iconUrl>https://cdn.rawgit.com/WayneEllery/chocolatey-packages/master/SoapUI/SoapUI.png</iconUrl>
     <dependencies>
     </dependencies>
     <releaseNotes></releaseNotes>
