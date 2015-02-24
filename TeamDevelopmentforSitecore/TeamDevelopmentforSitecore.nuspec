@@ -11,7 +11,7 @@
     <projectUrl>http://www.hhogdev.com/products/team-development-for-sitecore/overview.aspx</projectUrl>
     <tags>TDS Team Development Sitecore admin</tags>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
-    <iconUrl>ToDo</iconUrl>
+    <iconUrl>https://cdn.rawgit.com/WayneEllery/chocolatey-packages/master/TeamDevelopmentforSitecore/TDS.png</iconUrl>
     <dependencies>
     </dependencies>
     <releaseNotes></releaseNotes>
