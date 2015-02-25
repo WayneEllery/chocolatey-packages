@@ -7,6 +7,6 @@ $installedVersions = Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\Curren
         Where-Object {$_.DisplayName -match $tdsDisplayName } |
             Select -first 1 -ExpandProperty UninstallString
 
-$installedVersions = $installedVersions.replace("/I", "/X")            
-cmd /c "$installedVersions $silentArgs"
+$msiArgs = $installedVersions.replace("MsiExec.exe /I", "/X")
+Start-ChocolateyProcessAsAdmin "$msiArgs $silentArgs" 'msiexec'
 write-host "$packageName has been uninstalled."
