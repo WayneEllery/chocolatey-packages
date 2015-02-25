@@ -5,11 +5,8 @@ $tdsDisplayName = "Team Development for Sitecore"
 $installedVersions = Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall, HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall  |
     Get-ItemProperty |
         Where-Object {$_.DisplayName -match $tdsDisplayName } |
-            Select $_
+            Select -first 1 -ExpandProperty UninstallString
 
-ForEach ($installedVersion in $installedVersions) {
-	$chocolateyPackageName = $installedVersion.DisplayName
-    $uninstallPath = $installedVersion.UninstallString.replace("/I", "/x ")
-	#Uninstall-ChocolateyPackage "$chocolateyPackageName" "msi" "$silentArgs" "$uninstallPath"
-	#MsiExec.exe /x HedgehogDevelopmentTDS_VS2013.msi /quiet
-}
+$installedVersions = $installedVersions.replace("/I", "/X")            
+cmd /c "$installedVersions $silentArgs"
+write-host "$packageName has been uninstalled."
