@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>TDS-VS2010</id>
+    <title>Team Development for Sitecore - VS2010</title>
+    <version>5.1.0.3</version>
+    <authors>Hedgehog Development</authors>
+    <owners>WayneEllery</owners>
+    <summary>Team Development for Sitecore (TDS) brings all of your Sitecore objects into Visual Studio</summary>
+    <description>Team Development for Sitecore (TDS) brings all of your Sitecore objects into Visual Studio. Imagine having all the benefits of a Source Control Management System fully integrated into your Sitecore Development environment. Team Development for Sitecore (TDS) makes that a reality. Now you are able to take advantage of the value Visual Studio Team System (VSTS), Subversion, or many other Source Code Management Systems offer to you on your Sitecore-based projects.</description>
+    <projectUrl>http://www.hhogdev.com/products/team-development-for-sitecore/overview.aspx</projectUrl>
+    <tags>TDS Team Development Sitecore admin</tags>
+    <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
+    <iconUrl>https://cdn.rawgit.com/WayneEllery/chocolatey-packages/master/TeamDevelopmentforSitecore/TDS.png</iconUrl>
+    <dependencies>
+    </dependencies>
+    <releaseNotes></releaseNotes>
+  </metadata>
+  <files>
+    <file src="Tools\**" target="Tools" />
+    <file src="..\common.ps1" target="Tools" />
+    <file src="..\TDSCommon\tdsCommon.ps1" target="Tools" />
+  </files>
+</package>

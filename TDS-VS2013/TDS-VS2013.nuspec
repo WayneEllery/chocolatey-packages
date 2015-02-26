@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>TDS</id>
-    <title>Team Development for Sitecore</title>
+    <id>TDS-VS2013</id>
+    <title>Team Development for Sitecore - VS2013</title>
     <version>5.1.0.3</version>
     <authors>Hedgehog Development</authors>
     <owners>WayneEllery</owners>
@@ -18,5 +18,7 @@
   </metadata>
   <files>
     <file src="Tools\**" target="Tools" />
+    <file src="..\common.ps1" target="Tools" />
+    <file src="..\TDSCommon\tdsCommon.ps1" target="Tools" />
   </files>
 </package>
