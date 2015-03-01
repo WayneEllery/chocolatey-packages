@@ -1,16 +1,13 @@
 . (Join-Path $(Split-Path -parent $MyInvocation.MyCommand.Definition) 'common.ps1')
 
 $basePackageName = "TDS"
-$version = "5.1.0.3"
+$downloadUrl = "https://az730006.vo.msecnd.net/5-1-0-3/"
+$silentArgs = "/quiet"
 
 Function InstallTds ($vsVersionNumber, $vsVersion) {
-	$zipDownloadDirectory = "$($env:TEMP)\$basePackageName"
-	$tdsSetupDirectory = "$zipDownloadDirectory\$version\"
-
 	CheckIfVsIsInstalled $vsVersionNumber $vsVersion
 
-	DownloadAndExtractTdsZipFile $zipDownloadDirectory
-	InstallTdsMsi $vsVersion $tdsSetupDirectory
+	InstallTdsMsi $vsVersion
 }
 
 Function CheckIfVsIsInstalled ($vsVersionNumber, $vsVersion) {
@@ -21,29 +18,21 @@ Function CheckIfVsIsInstalled ($vsVersionNumber, $vsVersion) {
 	}
 }
 
-Function DownloadAndExtractTdsZipFile () {
-	
-	$downloadUrl = "http://www.hhogdev.com/~/media/Files/Products/Team_Development/HedgehogDevelopmentTDS.zip"
+Function InstallTdsMsi ($vsVersion) {
+	$packageName = GetTdsPackageName $vsVersion
+	$setupFile = "$($downloadUrl)HedgehogDevelopmentTDS_$vsVersion.msi"
 
-	Install-ChocolateyZipPackage "$basePackageName" "$downloadUrl" "$zipDownloadDirectory"
-}
-
-Function InstallTdsMsi ($vsVersion, $tdsSetupDirectory) {
-	$silentArgs = "/quiet"
-	$packageName = GetTdsPackageName
-	$setupFile = "$($tdsSetupDirectory)HedgehogDevelopmentTDS_$vsVersion.msi"
-
-	Install-ChocolateyInstallPackage "$packageName" 'msi' "$silentArgs" "$setupFile"
+	Install-ChocolateyPackage "$packageName" 'msi' "$silentArgs" "$setupFile" -WarningPreference SilentlyContinue
 }
 
 Function UnintallTds ($vsVersion) {
 	$tdsDisplayName = "Team Development for Sitecore [(]$vsVersion[)]"
-	$packageName = GetTdsPackageName
+	$packageName = GetTdsPackageName $vsVersion
 	
 	UninstallMsi $tdsDisplayName $packageName
 }
 
-Function GetTdsPackageName () {
+Function GetTdsPackageName ($vsVersion) {
 	$packageName = "$basePackageName - $vsVersion"
 
 	$packageName
