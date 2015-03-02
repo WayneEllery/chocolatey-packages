@@ -33,10 +33,8 @@ Function AddLicenceToRegisty {
 	$licenceName = $parameters["LicenceName"]
 	$licenceKey = $parameters["LicenceKey"]
 
-	If (-Not (Test-Path $regLicence)) {
-		WriteRegValue $regLicence "Owner" $licenceName
-		WriteRegValue $regLicence "Key" $licenceKey
-	}
+	WriteRegValue $regLicence "Owner" $licenceName
+	WriteRegValue $regLicence "Key" $licenceKey
 }
 
 Function UnintallTds ($vsVersion) {
