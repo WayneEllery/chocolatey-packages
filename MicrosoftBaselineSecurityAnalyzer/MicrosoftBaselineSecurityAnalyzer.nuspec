@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>MicrosoftBaselineSecurityAnalyzer</id>
+    <title>Microsoft Baseline Security Analyzer</title>
+    <version>2.3.0</version>
+    <authors>Microsoft</authors>
+    <owners>WayneEllery</owners>
+    <summary>The Microsoft Baseline Security Analyzer provides a streamlined method to identify missing security updates and common security misconfigurations.</summary>
+    <description>The Microsoft Baseline Security Analyzer provides built-in checks to determine if Windows administrative vulnerabilities are present, if weak passwords are being used on Windows accounts, the presence of known IIS and SQL administrative vulnerabilities, and which security updates are required on each individual system.  The Microsoft Baseline Security Analyzer provides dynamic assessment of missing security updates.  The Microsoft Baseline Security Analyzer can scan one or more computers by domain, IP address range or other grouping.  Once complete, the Microsoft Baseline Security Analyzer provides a detailed report and instructions on how to help turn your system into a more secure working environment. The Microsoft Baseline Security Analyzer will create and store individual XML security reports for each computer scanned and will display the reports in the graphical user interface in HTML.</description>
+    <projectUrl>http://www.microsoft.com/en-us/download/details.aspx?id=7558</projectUrl>
+    <tags>MBSA Microsoft Baseline Security Analyzer Analyser admin</tags>
+    <iconUrl>https://cdn.rawgit.com/WayneEllery/chocolatey-packages/master/TDSCommon/TDS.png</iconUrl>
+    <dependencies>
+    </dependencies>
+    <releaseNotes></releaseNotes>
+  </metadata>
+  <files>
+    <file src="Tools\**" target="Tools" />
+    <file src="..\common.ps1" target="Tools" />
+  </files>
+</package>
