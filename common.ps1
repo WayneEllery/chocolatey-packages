@@ -30,26 +30,29 @@ Function AddHKCR () {
 	New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT | Out-Null
 }
 
-Function GetParameters {
-	$arguments = $env:chocolateyInstallArguments
-	$env:chocolateyInstallArguments=""
-	$MATCH_PATTERN = "/([a-zA-Z]+):([`"'])?([a-zA-Z0-9- _]+)([`"'])?"
-	$PARAMATER_NAME_INDEX = 1
-	$PARAMATER_VALUE_INDEX = 3
+Function GetPackageParameters {
+	$packageParameters = $env:chocolateyPackageParameters
 
-    $results = $arguments | Select-String $MATCH_PATTERN -AllMatches  
-    
-    $parameters = @{ }
-    
-    If ($results) {
-	    $results.matches | % { 
-		    $parameters.Add(
-		    	$_.Groups[$PARAMATER_NAME_INDEX].Value.Trim(),
-		    	$_.Groups[$PARAMATER_VALUE_INDEX].Value.Trim()) 
+	if ($packageParameters) {
+		$match_pattern = "\/(?<option>([a-zA-Z]+)):(?<value>([`"'])?([a-zA-Z0-9- _\\:\.]+)([`"'])?)|\/(?<option>([a-zA-Z]+))"
+		$option_name = 'option'
+		$value_name = 'value'
+
+		if ($packageParameters -match $match_pattern) {
+			$results = $packageParameters | Select-String $match_pattern -AllMatches
+			$results.matches | % {
+			$arguments.Add(
+				$_.Groups[$option_name].Value.Trim(),
+				$_.Groups[$value_name].Value.Trim())
+			}
+		}
+		else
+		{
+			Throw "Package Parameters were found but were invalid"
 		}
 	}
 
-	$parameters
+	$packageParameters
 }
 
 Function WriteRegValue ($path, $name, $value) {

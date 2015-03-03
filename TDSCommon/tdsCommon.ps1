@@ -29,7 +29,7 @@ Function InstallTdsMsi ($vsVersion) {
 }
 
 Function AddLicenceToRegisty {
-	$parameters = GetParameters
+	$packageParameters = GetPackageParameters
 	$licenceName = $parameters["LicenceName"]
 	$licenceKey = $parameters["LicenceKey"]
 

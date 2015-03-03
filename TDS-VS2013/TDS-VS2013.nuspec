@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>TDS-VS2013</id>
+    <id>tds-vs2013</id>
     <title>Team Development for Sitecore - VS2013</title>
     <version>5.1.0.3</version>
     <authors>Hedgehog Development</authors>
@@ -15,8 +15,8 @@ The following package parameters can be set:
  * `/licenceName` - This sets the name that the licence belongs to
  * `/licenceKey` - This sets the key of the licence
 
-These parameters can be passed to the installer with the use of `-InstallArguments`.
-For example: `choco install TDS-VS2013 -InstallArguments "/LicenceName:'John Jones' /LicenceKey:0000-0000-0000-0000"`.
+These parameters can be passed to the installer with the use of `-params`.
+For example: `choco install tds-vs2013 -params "/LicenceName:'John Jones' /LicenceKey:0000-0000-0000-0000"`.
     </description>
     <projectUrl>http://www.hhogdev.com/products/team-development-for-sitecore/overview.aspx</projectUrl>
     <tags>TDS Team Development Sitecore admin</tags>

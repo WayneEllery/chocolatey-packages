@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>TDS-VS2010</id>
+    <id>tds-vs2010</id>
     <title>Team Development for Sitecore - VS2010</title>
     <version>5.1.0.3</version>
     <authors>Hedgehog Development</authors>
@@ -9,15 +9,14 @@
     <summary>Team Development for Sitecore (TDS) brings all of your Sitecore objects into Visual Studio</summary>
     <description>Team Development for Sitecore (TDS) brings all of your Sitecore objects into Visual Studio. Imagine having all the benefits of a Source Control Management System fully integrated into your Sitecore Development environment. Team Development for Sitecore (TDS) makes that a reality. Now you are able to take advantage of the value Visual Studio Team System (VSTS), Subversion, or many other Source Code Management Systems offer to you on your Sitecore-based projects.
 
-
 #### Package Parameters
 The following package parameters can be set:
 
  * `/licenceName` - This sets the name that the licence belongs to
  * `/licenceKey` - This sets the key of the licence
  
-These parameters can be passed to the installer with the use of `-InstallArguments`.
-For example: `choco install TDS-VS2012 -InstallArguments "/LicenceName:'John' /LicenceKey:0000-0000-0000-0000"`.</description>
+These parameters can be passed to the installer with the use of `-params`.
+For example: `choco install tds-vs2010 -params "/LicenceName:'John Jones' /LicenceKey:0000-0000-0000-0000"`.</description>
     <projectUrl>http://www.hhogdev.com/products/team-development-for-sitecore/overview.aspx</projectUrl>
     <tags>TDS Team Development Sitecore admin</tags>
     <iconUrl>https://cdn.rawgit.com/WayneEllery/chocolatey-packages/master/TDSCommon/TDS.png</iconUrl>
