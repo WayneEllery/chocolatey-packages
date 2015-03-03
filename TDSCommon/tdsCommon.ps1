@@ -25,7 +25,7 @@ Function InstallTdsMsi ($vsVersion) {
 
 	AddLicenceToRegisty
 
-	Install-ChocolateyPackage "$packageName" 'msi' "$silentArgs" "$setupFile" -WarningPreference SilentlyContinue
+	Install-ChocolateyPackage "$packageName" 'msi' "$silentArgs" "$setupFile"
 }
 
 Function AddLicenceToRegisty {
