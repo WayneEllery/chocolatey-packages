@@ -1,5 +1,13 @@
 Function GetUninstallString ($displayName) {
-	$uninstallString = Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall, HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall  |
+	$uninstallPathWow6432 = "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall"
+	
+	$uninstallPaths = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
+	
+	if (Test-Path $uninstallPathWow6432) {
+		$uninstallPaths = $uninstallPaths, $uninstallPathWow6432
+	}
+	
+	$uninstallString = Get-ChildItem -Path $uninstallPaths  |
 	    Get-ItemProperty |
 	        Where-Object {$_.DisplayName -match $displayName } |
 	            Select -first 1 -ExpandProperty UninstallString
