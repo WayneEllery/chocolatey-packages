@@ -16,7 +16,7 @@ The following package parameters can be set:
  * `/licenceKey` - This sets the key of the licence
 
 These parameters can be passed to the installer with the use of `-params`.
-For example: `choco install tds-vs2013 -params "/LicenceName:'John Jones' /LicenceKey:0000-0000-0000-0000"`.
+For example: `choco install tds-vs2013 -y -params "/LicenceName:'John Jones' /LicenceKey:0000-0000-0000-0000"`.
     </description>
     <projectUrl>http://www.hhogdev.com/products/team-development-for-sitecore/overview.aspx</projectUrl>
     <tags>TDS Team Development Sitecore admin</tags>

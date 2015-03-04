@@ -1,4 +1,18 @@
+$msiSilentArgs = "/quiet"
+
 Function GetUninstallString ($displayName) {
+	$uninstallString = GetUninstallProperty $displayName 'UninstallString'
+
+	$uninstallString
+}
+
+Function GetInstalledVersionNo ($displayName) {
+	$versionNo = GetUninstallProperty $displayName 'DisplayVersion'
+
+	$VersionNo
+}
+
+Function GetUninstallProperty ($displayName, $property) {
 	$uninstallPathWow6432 = "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall"
 	
 	$uninstallPaths = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
@@ -7,21 +21,32 @@ Function GetUninstallString ($displayName) {
 		$uninstallPaths = $uninstallPaths, $uninstallPathWow6432
 	}
 	
-	$uninstallString = Get-ChildItem -Path $uninstallPaths  |
+	$uninstallProperty = Get-ChildItem -Path $uninstallPaths  |
 	    Get-ItemProperty |
 	        Where-Object {$_.DisplayName -match $displayName } |
-	            Select -first 1 -ExpandProperty UninstallString
+	            Select -first 1 -ExpandProperty $property
 
-	 $uninstallString
+	$uninstallProperty
+}
+
+Function InstallMsi ($displayName, $packageName, $versionNo, $msiFile) {
+	$installedVersionNo = GetInstalledVersionNo $displayName
+
+	if ($versionNo -eq $installedVersionNo) {
+		 Write-Host "$packageName is already installed so no need to install."
+	}
+	else {
+		Install-ChocolateyPackage "$packageName" 'msi' "$msiSilentArgs" "$msiFile"
+	}
 }
 
 Function UninstallMsi ($displayName, $packageName) {
-	$silentArgs = "/quiet"
+	
 	$uninstallString = GetUninstallString $displayName
 
 	If ($uninstallString) {
 		$msiArgs = $uninstallString -replace "MsiExec.exe /I", "/X"
-		Start-ChocolateyProcessAsAdmin "$msiArgs $silentArgs" 'msiexec'
+		Start-ChocolateyProcessAsAdmin "$msiArgs $msiSilentArgs" 'msiexec'
 		write-host "$packageName has been uninstalled."
 	}
 }
@@ -32,6 +57,7 @@ Function AddHKCR () {
 
 Function GetPackageParameters {
 	$packageParameters = $env:chocolateyPackageParameters
+	$parameters = @{ }
 
 	if ($packageParameters) {
 		$match_pattern = "\/(?<option>([a-zA-Z]+)):(?<value>([`"'])?([a-zA-Z0-9- _\\:\.]+)([`"'])?)|\/(?<option>([a-zA-Z]+))"
@@ -41,7 +67,7 @@ Function GetPackageParameters {
 		if ($packageParameters -match $match_pattern) {
 			$results = $packageParameters | Select-String $match_pattern -AllMatches
 			$results.matches | % {
-			$arguments.Add(
+			$parameters.Add(
 				$_.Groups[$option_name].Value.Trim(),
 				$_.Groups[$value_name].Value.Trim())
 			}
@@ -52,7 +78,7 @@ Function GetPackageParameters {
 		}
 	}
 
-	$packageParameters
+	$parameters
 }
 
 Function WriteRegValue ($path, $name, $value) {
